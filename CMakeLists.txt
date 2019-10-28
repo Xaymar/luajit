@@ -27,7 +27,7 @@ set ( LUA_MAXINPUT 512 CACHE NUMBER "Is the maximum length for an input line in 
 # Version
 set ( MAJVER 2 )
 set ( MINVER 0 )
-set ( RELVER 2 )
+set ( RELVER 5 )
 set ( ABIVER 5.1 )
 set ( NODOTABIVER 51 )
 
@@ -155,6 +155,7 @@ endif ()
 # Build minilua
 add_executable ( minilua src/host/minilua.c )
 target_link_libraries ( minilua ${LIBS} )
+install_executable( minilua )
 
 # Dynasm
 set ( DASM ${CMAKE_CURRENT_SOURCE_DIR}/dynasm/dynasm.lua )
@@ -213,6 +214,7 @@ add_custom_command(OUTPUT ${DASM_T}
 # Buildvm
 file ( GLOB SRC_BUILDVM src/host/buildvm*.c )
 add_executable ( buildvm ${SRC_BUILDVM} ${DASM_T} )
+install_executable( buildvm )
 
 macro(add_buildvm_target _target _mode)
   add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${_target}
